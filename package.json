@@ -1,0 +1,36 @@
+{
+  "name": "astro-env",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "lint:markup": "markuplint \"src/**/*.astro\"",
+    "lint:style": "stylelint --fix \"src/**/*.{scss,astro}\"",
+    "lint:es": "eslint --fix \"src/**/*.{js,astro}\"",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "npm run lint:{markup,style,es} && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.1.1"
+  },
+  "devDependencies": {
+    "@markuplint/astro-parser": "^3.12.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-astro": "^0.31.0",
+    "markuplint": "^3.15.0",
+    "postcss-html": "^1.5.0",
+    "postcss-sort-media-queries": "^5.2.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.3",
+    "sass": "^1.69.7",
+    "stylelint": "^16.1.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-property-sort-order-smacss": "^10.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "vite-plugin-sass-glob-import": "^3.0.2"
+  }
+}
