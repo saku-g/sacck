@@ -4,8 +4,13 @@ import { SITE } from '../config';
 
 // Layout
 import Layout from '../layouts/Layout.astro';
+
+// Component
+import Hero from '../components/Hero.astro';
 ---
 
 <Layout title={SITE.title} description={SITE.description}>
-  <h1>Page Title</h1>
+  <main class="l-site__main">
+    <Hero />
+  </main>
 </Layout>
