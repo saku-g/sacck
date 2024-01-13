@@ -7,10 +7,114 @@ import Layout from '../layouts/Layout.astro';
 
 // Component
 import Hero from '../components/Hero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+
+import { Picture } from 'astro:assets';
+import imgAbout from '../assets/img/about@2x.jpg';
 ---
 
 <Layout title={SITE.title} description={SITE.description}>
   <main class="l-site__main">
+    <!-- Hero -->
     <Hero />
+
+    <!-- About -->
+    <section class="u-py-10">
+      <SectionTitle text="About" />
+      <div class="l-container">
+        <div class="about">
+          <figure class="about__imgWrapper">
+            <Picture src={imgAbout} formats={['avif', 'webp']} alt="" />
+          </figure>
+          <div class="about__body">
+            <section class="about__item">
+              <h3 class="about__title">経歴</h3>
+              <p class="about__text">
+                2019年1月から、Web制作の勉強をスタート。始めたきっかけは、自分で作って形を残せることに、楽しそうと感じたからでした。<br
+                />その後、同年12月にBtoB向けに勤怠管理システムを開発・提供する会社に入社。主にWebサイト制作、システムのデザイン・フロント画面のマークアップを担当していました。<br
+                />コードを書くことでデザインを再現させていくプロセスが好きで、デザインとコードに規律性があるとなおさら喜びを感じるタイプです。
+              </p>
+            </section>
+            <section class="about__item">
+              <h3 class="about__title">今後やりたいこと</h3>
+              <p class="about__text">
+                最近では、Astroなどのフロントエンドフレームワークを習得するべく、JavaScriptの基礎から学び直しています。また、React・Next.jsなどのフロントエンドフレームワークを使ってアプリを作ってみたいと考えています。何か身の回りで使えるアプリをぼんやりと考えています。
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <style lang="scss">
+    @use '../assets/scss/global' as *;
+
+    .about {
+      display: grid;
+      gap: rem(24) 0;
+      margin-top: rem(24);
+
+      @include mq(md) {
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+        margin-top: rem(64);
+        gap: 0 1rem;
+      }
+    }
+
+    .about__imgWrapper {
+      height: 180px;
+      margin-inline: calc(var(--content-gutter-x) * -1);
+      overflow: hidden;
+
+      @include mq(md) {
+        grid-column: 8 / span 5;
+        height: 440px;
+        margin-inline: 0;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .about__body {
+      @include mq(md) {
+        grid-column: 1 / span 7;
+        order: -1;
+        padding-right: calc(32 / 553 * 100%);
+      }
+    }
+
+    .about__item {
+      & + & {
+        margin-top: 2rem;
+
+        @include mq(lg) {
+          margin-top: 3rem;
+        }
+      }
+    }
+
+    .about__title {
+      font-size: rem(20);
+      font-weight: 500;
+      line-height: 1.2;
+
+      @include mq(lg) {
+        font-size: rem(24);
+      }
+    }
+
+    .about__text {
+      margin-top: rem(16);
+
+      @include mq(lg, $not: true) {
+        font-size: rem(14);
+      }
+    }
+  </style>
 </Layout>

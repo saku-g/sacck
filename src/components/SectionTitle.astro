@@ -1,0 +1,56 @@
+---
+interface Props {
+  text: string;
+  className?: string;
+}
+
+const { text, className } = Astro.props;
+---
+
+<div class="sectionTitle">
+  <div class="l-container">
+    <h2 lang="en" class:list={['_text', className]}>{text}</h2>
+  </div>
+</div>
+
+<style lang="scss">
+  @use '../assets/scss/global' as *;
+
+  .sectionTitle {
+    overflow: hidden;
+  }
+
+  ._text {
+    display: flex;
+    align-items: center;
+    column-gap: rem(16);
+    font-size: fluid(42, 80, var(--sp-comp-width), var(--pc-comp-width));
+    line-height: 1.2;
+
+    @include mq(md) {
+      column-gap: rem(32);
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 100vw;
+      max-width: 1240px;
+      height: 1px;
+
+      // margin-right: calc(50% - 50vw);
+      margin-inline-end: calc(50% - 50vw);
+      overflow: hidden;
+      background-color: var(--main-color);
+    }
+
+    &.-reverse {
+      flex-direction: row-reverse;
+
+      &::after {
+        margin-right: 0;
+        margin-left: calc(50% - 50vw);
+      }
+    }
+  }
+</style>
