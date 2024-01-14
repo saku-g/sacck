@@ -8,6 +8,7 @@ import Layout from '../layouts/Layout.astro';
 // Component
 import Hero from '../components/Hero.astro';
 import SectionTitle from '../components/SectionTitle.astro';
+import WorksContent from '../components/Works.astro';
 
 import { Picture } from 'astro:assets';
 import imgAbout from '../assets/img/about@2x.jpg';
@@ -19,7 +20,7 @@ import imgAbout from '../assets/img/about@2x.jpg';
     <Hero />
 
     <!-- About -->
-    <section class="u-py-10">
+    <section class="u-pt-10 u-pb-5">
       <SectionTitle text="About" />
       <div class="l-container">
         <div class="about">
@@ -44,6 +45,12 @@ import imgAbout from '../assets/img/about@2x.jpg';
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Works -->
+    <section class="u-py-5">
+      <SectionTitle text="Works" className="-reverse" />
+      <WorksContent />
     </section>
   </main>
 

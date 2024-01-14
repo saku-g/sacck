@@ -4,6 +4,7 @@ import '../assets/scss/style.scss';
 
 // Components
 import Header from '../components/Header.astro';
+import Svg from '../components/Svg.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
@@ -32,6 +33,7 @@ const { title, description } = Astro.props;
     />
   </head>
   <body>
+    <Svg />
     <div class="l-site">
       <Header />
       <slot />

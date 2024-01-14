@@ -1,0 +1,318 @@
+---
+// Data
+import { WORKS_CONTENTS } from '../worksContents';
+
+// Image
+import { Picture } from 'astro:assets';
+import imgWorks1 from '../assets/img/works-1.jpg';
+import imgWorks2 from '../assets/img/works-2.jpg';
+import imgWorks3 from '../assets/img/works-3.jpg';
+import imgWorks4 from '../assets/img/works-4.jpg';
+import imgWorks5 from '../assets/img/works-5.jpg';
+import imgWorks6 from '../assets/img/works-6.jpg';
+import imgWorks7 from '../assets/img/works-7.jpg';
+import imgWorks8 from '../assets/img/works-8.jpg';
+
+const sliderData = [
+  { id: WORKS_CONTENTS[0].id, src: imgWorks1, url: WORKS_CONTENTS[0].url },
+  { id: WORKS_CONTENTS[1].id, src: imgWorks2, url: WORKS_CONTENTS[1].url },
+  { id: WORKS_CONTENTS[2].id, src: imgWorks3, url: WORKS_CONTENTS[2].url },
+  { id: WORKS_CONTENTS[3].id, src: imgWorks4, url: WORKS_CONTENTS[3].url },
+  { id: WORKS_CONTENTS[4].id, src: imgWorks5, url: WORKS_CONTENTS[4].url },
+  { id: WORKS_CONTENTS[5].id, src: imgWorks6, url: WORKS_CONTENTS[5].url },
+  { id: WORKS_CONTENTS[6].id, src: imgWorks7, url: WORKS_CONTENTS[6].url },
+  { id: WORKS_CONTENTS[7].id, src: imgWorks8, url: WORKS_CONTENTS[7].url },
+];
+---
+
+<div class="l-container">
+  <div class="works">
+    <section class="works__body">
+      {
+        WORKS_CONTENTS.map(({ id, title, created, period, role, url, description, authentication }) => (
+          <div id={`worksContent-${id}`} class="works__content js-worksContent">
+            <h3 class="works__title">{title}</h3>
+            <dl class="works__list">
+              <dt>制作年月日</dt>
+              <dd>{created}</dd>
+              <dt>制作期間</dt>
+              <dd>{period}</dd>
+              <dt>担当範囲</dt>
+              <dd>{role}</dd>
+              <dt>URL</dt>
+              <dd>
+                <a class="works__link" href={url} target="_blank" rel="noopener noreferrer">
+                  {url}
+                  <svg aria-hidden="true">
+                    <use href="#arrow" />
+                  </svg>
+                </a>
+              </dd>
+              {authentication &&
+              <dt>Basic認証情報</dt>
+              <dd>
+                <span class="u-block">ユーザー名: <em>admin</em></span>
+                <span class="u-block">パスワード: <em>pass</em></span>
+              </dd>
+              }
+            </dl>
+            <p class="works__text">{description}</p>
+          </div>
+        ))
+      }
+    </section>
+    <div class="works__sliderWrapper">
+      <div class="swiper works__mainSlider">
+        <ul class="swiper-wrapper">
+          {
+            sliderData.map(({ id, src, url }) => (
+              <li class="swiper-slide" data-id={id}>
+                <figure>
+                  <Picture src={src} formats={['avif', 'webp']} alt="" />
+                </figure>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="swiper works__thumbSlider">
+        <ul class="swiper-wrapper">
+          {
+            sliderData.map(({ src }) => (
+              <li class="swiper-slide">
+                <figure>
+                  <Picture src={src} formats={['avif', 'webp']} alt="" />
+                </figure>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <!-- /.work__slider -->
+  </div>
+  <!-- /.works -->
+</div>
+<!-- /.l-container -->
+
+<style lang="scss">
+  @use '../assets/scss/global' as *;
+
+  .works {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 1.5rem 0;
+    margin-top: rem(40);
+
+    @include mq(md) {
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 0 1rem;
+      margin-top: rem(48);
+    }
+  }
+
+  .works__body {
+    @include mq(md) {
+      grid-column: 7 / span 6;
+      padding-left: calc(32 / 472 * 100%);
+    }
+  }
+
+  .works__content {
+    display: none;
+
+    &.is-show {
+      display: block;
+    }
+  }
+
+  .works__title {
+    font-size: rem(20);
+    font-weight: 500;
+    line-height: 1.25;
+
+    @include mq(lg) {
+      font-size: rem(24);
+    }
+  }
+
+  .works__list {
+    display: grid;
+    grid-template-columns: max-content;
+    grid-template-rows: 1fr;
+    margin-top: 0.75rem;
+    padding: 1em;
+    border: 1px solid var(--main-color);
+    line-height: 1.5;
+    gap: rem(8) rem(24);
+
+    @include mq(lg) {
+      margin-top: 1rem;
+      padding:1.25rem;
+      row-gap: rem(12);
+    }
+
+    dt,
+    dd {
+      @include mq(lg, $not:true) {
+        font-size: rem(14);
+      }
+    }
+
+    dt {
+      grid-column: 1/2;
+      font-weight: 400;
+    }
+
+    dd {
+      grid-column: 2/3;
+    }
+  }
+
+  .works__link {
+    border-bottom: 1px dashed currentcolor;
+    word-break: break-all;
+    overflow-wrap: break-word;
+
+    @include hover {
+      border-color: transparent;
+    }
+
+    svg {
+      --size: 0.75em;
+
+      width: var(--size);
+      height: var(--size);
+      margin-left: 2px;
+      transform: translateY(-4px) rotate(45deg);
+    }
+  }
+
+  .works__text {
+    margin-top: 1rem;
+    font-size: rem(14);
+    white-space: pre-wrap;
+
+    @include mq(lg) {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  .works__sliderWrapper {
+    order: -1;
+
+    @include mq(md) {
+      grid-column: 1 / span 6;
+    }
+  }
+
+  .works__mainSlider img,
+  .works__thumbSlider img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .works__mainSlider {
+    .swiper-slide img {
+      position: relative;
+      border: 2px solid transparent;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0;
+        border: 1px solid #fff;
+      }
+    }
+
+    .swiper-slide-active img {
+      border-color: var(--main-color);
+    }
+  }
+
+  // サムネイルスライダー
+  .works__thumbSlider {
+    margin-top: 0.75rem;
+
+    .swiper-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+
+      @include mq(md) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .swiper-slide {
+      width: auto !important; // style属性のwidthを打ち消し
+      transition: transform .15s linear;
+      border: 1px solid rgb(0 0 0 / 10%);
+      cursor: pointer;
+
+      // 非アクティブのサムネイル
+      &:not(.swiper-slide-thumb-active)::after {
+        content: '';
+        display: block;
+        position: absolute;
+        opacity: 0.5;
+        background-color: var(--base-color);
+        inset: 0;
+      }
+
+      // アクティブのサムネイル
+      &.swiper-slide-thumb-active {
+        transform: scale(.95);
+        border-color: var(--main-color);
+      }
+    }
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper/bundle';
+
+  import 'swiper/css';
+  import 'swiper/css/effect-fade';
+  import 'swiper/css/scrollbar';
+
+  const thumbSlider = new Swiper('.works__thumbSlider', {
+    allowTouchMove: false
+  });
+
+  const mainSlider = new Swiper('.works__mainSlider', {
+    loop: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
+    },
+    speed: 500,
+    grabCursor: true,
+    thumbs: {
+      swiper: thumbSlider,
+    },
+  });
+
+  /**
+   * 制作コンテンツの切り替え
+   */
+
+  /**
+   * 初期化処理
+   * -------------------- */
+  const sliderActiveId = document.querySelector('.works__mainSlider .swiper-slide-active').getAttribute('data-id');
+
+  document.getElementById(`worksContent-${sliderActiveId}`).classList.add('is-show');
+
+  mainSlider.on('slideChangeTransitionStart', function (swiper) {
+    const slides = document.querySelectorAll('.js-worksContent');
+    slides.forEach((slide) => {
+      slide.classList.remove('is-show');
+    });
+    const id = swiper.visibleSlides[0].getAttribute('data-id');
+    document.getElementById(`worksContent-${id}`).classList.add('is-show');
+  });
+</script>
