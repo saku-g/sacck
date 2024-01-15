@@ -8,7 +8,8 @@ import Layout from '../layouts/Layout.astro';
 // Component
 import Hero from '../components/Hero.astro';
 import SectionTitle from '../components/SectionTitle.astro';
-import WorksContent from '../components/Works.astro';
+import Works from '../components/Works.astro';
+import Skills from '../components/Skills.astro';
 
 import { Picture } from 'astro:assets';
 import imgAbout from '../assets/img/about@2x.jpg';
@@ -50,7 +51,13 @@ import imgAbout from '../assets/img/about@2x.jpg';
     <!-- Works -->
     <section class="u-py-5">
       <SectionTitle text="Works" className="-reverse" />
-      <WorksContent />
+      <Works />
+    </section>
+
+    <!-- Skills -->
+    <section class="u-py-6">
+      <SectionTitle text="Skills" />
+      <Skills />
     </section>
   </main>
 

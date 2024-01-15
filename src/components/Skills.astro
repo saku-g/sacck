@@ -1,0 +1,103 @@
+---
+
+---
+
+<div class="l-container">
+  <ul class="skills">
+    {
+      [
+        {
+          iconId: 'html',
+          title: 'HTML',
+          description:
+            '適切なタグを用いてマークアップすることを心がけています（まだまだ勉強中ですが...）。また、テンプレートエンジン（Pug・EJS）の使用経験もあります。',
+        },
+        {
+          iconId: 'css',
+          title: 'CSS',
+          description:
+            '自分がしっくりくるディレクトリ構成をあれこれ考えることが好きです。特にCSS設計が好きで、BEM・FLOCSSを取り入れることが多いです。',
+        },
+        {
+          iconId: 'js',
+          title: 'JavaScript',
+          description:
+            '基本的なDOM操作はできますが、まだまだ勉強中です... 最近注目されているヘッドレスCMSへの理解を深めたいと思い、学習を進めています。',
+        },
+        {
+          iconId: 'wp',
+          title: 'WordPress',
+          description:
+            'ディレクトリ構成とテンプレートの基礎は理解しています。複数ページに渡るオリジナルテーマの制作経験もあります。',
+        },
+        {
+          iconId: 'design',
+          title: 'Design',
+          description:
+            'Xdを使用することが多かったです。Photoshop・Illustratorは、基本操作とコーディングの際に必要な情報の抜き出し、画像の適切な書き出しができます。',
+        },
+      ].map(({ iconId, title, description }) => (
+        <li class="skills__item">
+          <h3 class="skills__title">
+            <svg class="skills__icon" aria-hidden="true">
+              <use href={`#${iconId}`} />
+            </svg>
+            {title}
+          </h3>
+          <p class="skills__text">{description}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <!-- /.skills -->
+</div>
+<!-- /.l-container -->
+
+<style lang="scss">
+  @use '../assets/scss/global' as *;
+
+  .skills {
+    --columns: 1;
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: 1rem;
+    margin-top: fluid(32, 64, var(--sp-comp-width), var(--pc-comp-width));
+
+    @include mq(md) {
+      --columns: 2;
+    }
+
+    @include mq(lg) {
+      --columns: 3;
+    }
+  }
+
+  .skills__item {
+    padding: 1rem;
+    border: 1px solid var(--main-color);
+  }
+
+  .skills__title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-en);
+    font-size: rem(20);
+  }
+
+  .skills__icon {
+    --size: 1.75rem;
+
+    width: var(--size);
+    height: var(--size);
+    fill: var(--main-color);
+  }
+
+  .skills__text {
+    font-size: rem(14);
+  }
+</style>
+
+<script></script>
