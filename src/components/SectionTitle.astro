@@ -9,7 +9,7 @@ const { text, className } = Astro.props;
 
 <div class="sectionTitle">
   <div class="l-container">
-    <h2 lang="en" class:list={['_text', className]}>{text}</h2>
+    <h2 lang="en" class:list={['sectionTitle__text', className]}>{text}</h2>
   </div>
 </div>
 
@@ -20,7 +20,7 @@ const { text, className } = Astro.props;
     overflow: hidden;
   }
 
-  ._text {
+  .sectionTitle__text {
     display: flex;
     align-items: center;
     column-gap: rem(16);

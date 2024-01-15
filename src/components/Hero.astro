@@ -3,20 +3,20 @@ import { LINKS } from '../config';
 ---
 
 <div class="hero">
-  <div class="_body">
-    <h1 class="_title" lang="en">Yusaku Hori</h1>
+  <div class="hero__body">
+    <h1 class="hero__title" lang="en">Yusaku Hori</h1>
     <div class="u-pl-1">
-      <p class="_text" lang="en">Born in 1993, lives in Hiroshima. <br />I'm learning to become a web coder.</p>
-      <ul class="_links">
+      <p class="hero__text" lang="en">Born in 1993, lives in Hiroshima. <br />I'm learning to become a web coder.</p>
+      <ul class="hero__buttonWrapper">
         <li>
-          <a class="_button" href={LINKS.github} target="_blank" rel="noopener noreferrer">
+          <a class="hero__button" href={LINKS.github} target="_blank" rel="noopener noreferrer">
             <svg aria-hidden="true">
               <use href="#github"></use>
             </svg>
           </a>
         </li>
         <li>
-          <a class="_button" href="mailto:sakucode1993@gmail.com">
+          <a class="hero__button" href="mailto:sakucode1993@gmail.com">
             <span class="u-visuallyHidden">メールを送る</span>
             <svg aria-hidden="true">
               <use href="#mail"></use>
@@ -26,8 +26,8 @@ import { LINKS } from '../config';
       </ul>
     </div>
   </div>
-  <div class="_bottom" aria-hidden="true">
-    <div class="_scroll">
+  <div class="hero__bottom" aria-hidden="true">
+    <div class="hero__scroll">
       <span lang="en">Scroll</span>
     </div>
   </div>
@@ -47,13 +47,13 @@ import { LINKS } from '../config';
     padding-inline: var(--content-gutter-x);
   }
 
-  ._title {
+  .hero__title {
     font-size: fluid(80, 128, var(--sp-comp-width), var(--pc-comp-width));
     letter-spacing: 0.03em;
     line-height: 0.95;
   }
 
-  ._text {
+  .hero__text {
     margin-top: rem(16);
     line-height: 1.25;
 
@@ -62,14 +62,14 @@ import { LINKS } from '../config';
     }
   }
 
-  ._links {
+  .hero__buttonWrapper {
     display: flex;
     align-items: center;
     gap: 4px;
     margin-top: rem(40);
   }
 
-  ._button {
+  .hero__button {
     --size: 2.5rem;
 
     display: block;
@@ -88,7 +88,7 @@ import { LINKS } from '../config';
     }
   }
 
-  ._bottom {
+  .hero__bottom {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -96,7 +96,7 @@ import { LINKS } from '../config';
     transform: translateX(-50%);
   }
 
-  ._scroll {
+  .hero__scroll {
     display: flex;
     flex-direction: column;
     align-items: center;

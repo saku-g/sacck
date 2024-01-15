@@ -4,8 +4,8 @@ import imgLogo from '../assets/img/logo.svg';
 ---
 
 <header class="l-site__header header">
-  <div class="_inner">
-    <p class="_logo">
+  <div class="header__inner">
+    <p class="header__logo">
       <a href="/">
         <Image src={imgLogo} alt="Sacck" width="76" height="17" loading="eager" />
       </a>
@@ -21,7 +21,7 @@ import imgLogo from '../assets/img/logo.svg';
     top: 0;
   }
 
-  ._inner {
+  .header__inner {
     display: flex;
     align-items: center;
     height: rem(var(--header-height));
@@ -32,7 +32,7 @@ import imgLogo from '../assets/img/logo.svg';
     }
   }
 
-  ._logo {
+  .header__logo {
     padding-block: 1rem;
 
     a {
