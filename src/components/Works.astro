@@ -49,7 +49,7 @@ const sliderData = [
                 </a>
               </dd>
               {authentication &&
-              <dt>Basic認証情報</dt>
+              <dt>ログイン情報</dt>
               <dd>
                 <span class="u-block">ユーザー名: <em>admin</em></span>
                 <span class="u-block">パスワード: <em>pass</em></span>
@@ -101,21 +101,20 @@ const sliderData = [
   .works {
     display: grid;
     grid-template-columns: 100%;
-    gap: 1.5rem 0;
-    margin-top: rem(40);
+    gap: rem(24) 0;
+    margin-top: fluid(16, 48, var(--sp-comp-width), var(--pc-comp-width));
 
     @include mq(md) {
       grid-template-columns: repeat(12, 1fr);
       grid-template-rows: auto;
       gap: 0 1rem;
-      margin-top: rem(48);
     }
   }
 
   .works__body {
     @include mq(md) {
       grid-column: 7 / span 6;
-      padding-left: calc(32 / 472 * 100%);
+      padding-left: calc(40 / 472 * 100%);
     }
   }
 
@@ -141,23 +140,14 @@ const sliderData = [
     display: grid;
     grid-template-columns: max-content;
     grid-template-rows: 1fr;
-    margin-top: 0.75rem;
-    padding: 1em;
+    margin-top: 1rem;
+    padding: rem(14) rem(20);
     border: 1px solid var(--main-color);
     line-height: 1.5;
-    gap: rem(8) rem(24);
+    gap: rem(10) rem(24);
 
-    @include mq(lg) {
-      margin-top: 1rem;
-      padding-inline:1.25rem;
-      row-gap: rem(12);
-    }
-
-    dt,
-    dd {
-      @include mq(lg, $not:true) {
-        font-size: rem(14);
-      }
+    dt,dd {
+      font-size: rem(14);
     }
 
     dt {
@@ -171,7 +161,7 @@ const sliderData = [
   }
 
   .works__link {
-    border-bottom: 1px dashed currentcolor;
+    border-bottom: 1px solid currentcolor;
     word-break: break-all;
     overflow-wrap: break-word;
 
@@ -192,7 +182,8 @@ const sliderData = [
   .works__text {
     margin-top: 1rem;
     font-size: rem(14);
-    white-space: pre-wrap;
+    line-height: 2;
+    white-space: pre-wrap; // \nの改行を有効化
 
     @include mq(lg) {
       margin-top: 1.5rem;
@@ -235,7 +226,7 @@ const sliderData = [
 
   // サムネイルスライダー
   .works__thumbSlider {
-    margin-top: 0.75rem;
+    margin-top: rem(8);
 
     .swiper-wrapper {
       display: grid;

@@ -3,9 +3,29 @@ import { LINKS } from '../config';
 ---
 
 <footer class="footer">
-  <div class="_inner">
-    <p class="_copyRight">
-      <small lang="en">©️Sacck / <a href={LINKS.github} target="_blank" rel="noopener noreferrer">Github</a></small>
-    </p>
-  </div>
+  <p class="footer__copyright">
+    <small lang="en">©️Sacck / <a href={LINKS.github} target="_blank" rel="noopener noreferrer">Github</a></small>
+  </p>
 </footer>
+
+<style lang="scss">
+  @use '../assets/scss/global' as *;
+
+  .footer {
+    border-top: 1px solid var(--main-color);
+  }
+
+  .footer__copyright {
+    @include mq(md, $not: true) {
+      font-size: rem(14);
+    }
+
+    padding-block: 1rem;
+    line-height: 1;
+    text-align: center;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+</style>

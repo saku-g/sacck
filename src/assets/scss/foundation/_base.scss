@@ -31,7 +31,7 @@ body {
   color: var(--text-color);
   font-family: var(--font-base);
   -webkit-font-smoothing: antialiased;
-  line-height: 1.75;
+  line-height: 1.5;
   text-rendering: optimizelegibility;
 }
 
@@ -71,5 +71,5 @@ img {
 
 em {
   font-weight: 700;
-  font-style: italic;
+  font-style: normal;
 }
