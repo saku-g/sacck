@@ -17,8 +17,14 @@ import imgLogo from '../assets/img/logo.svg';
   @use '../assets/scss/global' as *;
 
   .header {
+    visibility: hidden;
     position: sticky;
+    z-index: 10;
     top: 0;
+    transition-property: visibility, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: -var(--easing);
+    opacity: 0;
   }
 
   .header__inner {
@@ -40,5 +46,12 @@ import imgLogo from '../assets/img/logo.svg';
       height: 100%;
       line-height: 1;
     }
+  }
+</style>
+
+<style lang="scss" is:global>
+  html.is-heroOver .header {
+    visibility: visible;
+    opacity: 1;
   }
 </style>

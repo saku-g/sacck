@@ -72,4 +72,20 @@ import Skills from '../components/Skills.astro';
   }
 </style>
 
-<script></script>
+<script>
+  import { SetObserver } from '../assets/js/setObserver';
+
+  /**
+   * heroセクションを監視する関数
+   * @param entries - 監視対象要素
+   */
+  const heroObserve = (entries) => {
+    if (!entries[0].isIntersecting) {
+      document.documentElement.classList.add('is-heroOver');
+    } else {
+      document.documentElement.classList.remove('is-heroOver');
+    }
+  };
+
+  new SetObserver('#js-hero', heroObserve);
+</script>

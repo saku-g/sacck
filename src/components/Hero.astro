@@ -2,7 +2,7 @@
 import { LINKS } from '../config';
 ---
 
-<div class="hero">
+<div class="hero" id="js-hero">
   <div class="hero__body">
     <h1 class="hero__title" lang="en">Yusaku Hori</h1>
     <div class="u-pl-1">
@@ -28,7 +28,7 @@ import { LINKS } from '../config';
   </div>
   <div class="hero__bottom" aria-hidden="true">
     <div class="hero__scroll">
-      <span lang="en">Scroll</span>
+      <span lang="en">Scroll Down</span>
     </div>
   </div>
 </div>
@@ -142,5 +142,11 @@ import { LINKS } from '../config';
     100% {
       transform-origin: top;
     }
+  }
+</style>
+
+<style lang="scss" is:global>
+  html.is-heroOver .hero__scroll::after {
+    animation: none;
   }
 </style>
