@@ -161,21 +161,42 @@ const sliderData = [
   }
 
   .works__link {
-    border-bottom: 1px solid currentcolor;
+    position: relative;
+    overflow-x: hidden;
     word-break: break-all;
     overflow-wrap: break-word;
 
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: -2px;
+      left:0;
+      width: 100%;
+      height: 1px;
+      transform-origin: right bottom;
+      transition: transform .3s var(--easing);
+      background-color: currentcolor;
+    }
+
     @include hover {
-      border-color: transparent;
+      &::after {
+        transform: scaleX(0);
+      }
+
+      svg {
+        transform: translateY(-4px) rotate(45deg);
+      }
     }
 
     svg {
-      --size: 0.75em;
+      --size: 0.875em;
 
       width: var(--size);
       height: var(--size);
       margin-left: 2px;
-      transform: translateY(-4px) rotate(45deg);
+      transform: translateY(-2px) rotate(45deg);
+      transition: transform .3s var(--easing);
     }
   }
 
