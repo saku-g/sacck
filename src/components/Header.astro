@@ -27,6 +27,11 @@ import imgLogo from '../assets/img/logo.svg';
     opacity: 0;
   }
 
+  html.is-heroOver .header {
+    visibility: visible;
+    opacity: 1;
+  }
+
   .header__inner {
     display: flex;
     align-items: center;
@@ -46,12 +51,5 @@ import imgLogo from '../assets/img/logo.svg';
       height: 100%;
       line-height: 1;
     }
-  }
-</style>
-
-<style lang="scss" is:global>
-  html.is-heroOver .header {
-    visibility: visible;
-    opacity: 1;
   }
 </style>

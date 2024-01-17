@@ -63,21 +63,20 @@ const { text, className } = Astro.props;
   .is-visible {
     .sectionTitle__inner {
       &::after {
-        transform-origin: right center;
-        animation: lineAnimation 0.5s ease-out;
-        opacity: 1;
+        transform-origin: center left;
+        animation: lineAnimation 0.8s var(--easing) 0.2s both;
       }
 
       .sectionTitle__text {
         --inset-value: 0 100% 0 0;
 
-        animation: textAnimation 0.4s linear 0.2s forwards;
+        animation: textAnimation 0.3s linear forwards;
       }
     }
 
     .sectionTitle__inner.-reverse {
       &::after {
-        transform-origin: left center;
+        transform-origin: center right;
       }
 
       .sectionTitle__text {
@@ -108,7 +107,7 @@ const { text, className } = Astro.props;
     }
 
     40% {
-      opacity: 0.2;
+      opacity: 0.5;
     }
 
     100% {

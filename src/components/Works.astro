@@ -31,7 +31,7 @@ const sliderData = [
       {
         WORKS_CONTENTS.map(({ id, title, created, period, role, url, description, authentication }) => (
           <div
-            id={`worksContent-${id}`} class="works__content js-worksContent"data-animated="fadeInUp" style={`--delay: 0.2s;`}>
+            id={`worksContent-${id}`} class="works__content js-worksContent" data-animated="blurInUp" style={`--delay: 0.4s;`}>
             <h3 class="works__title">{title}</h3>
             <dl class="works__list">
               <dt>制作年月日</dt>
@@ -62,7 +62,7 @@ const sliderData = [
         ))
       }
     </section>
-    <div class="works__sliderWrapper" data-animated="blur">
+    <div class="works__sliderWrapper" data-animated="fadeIn" style={`--delay:0.3s`}>
       <div class="swiper works__mainSlider">
         <ul class="swiper-wrapper">
           {
@@ -310,6 +310,7 @@ const sliderData = [
     const slides = document.querySelectorAll('.js-worksContent');
     slides.forEach((slide) => {
       slide.classList.remove('is-show','is-animated');
+      slide.style.setProperty('--delay', '0.2s');
     });
     const id = swiper.visibleSlides[0].getAttribute('data-id');
     document.getElementById(`worksContent-${id}`).classList.add('is-show');

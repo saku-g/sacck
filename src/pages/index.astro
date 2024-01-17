@@ -38,9 +38,9 @@ import Skills from '../components/Skills.astro';
 
     <!-- Contact -->
     <div class="section -contact">
-      <p class="u-text-center" lang="en" data-animated="blur">
+      <p class="u-text-center" lang="en">
         <a class="contactLink" href="mailto:sakucode1993@gmail.com">
-          <span class="contactLink__text">Contact Me</span>
+          <span class="contactLink__text" data-animated="slideIn Up">Contact Me</span>
           <svg aria-hidden="true" class="contactLink__icon">
             <use href="#send"></use>
           </svg>
@@ -71,6 +71,7 @@ import Skills from '../components/Skills.astro';
     position: relative;
     align-items: flex-end;
     padding-inline: 1rem;
+    overflow: hidden;
     column-gap: 0.5rem;
     transition-property: transfrom, padding;
     transition-duration: 0.3s;
@@ -136,19 +137,37 @@ import Skills from '../components/Skills.astro';
     transition: all var(--duration) var(--easing) var(--delay);
   }
 
-  // fadeInUp
-  [data-animated~='fadeInUp'] {
-    transform: translateY(10px);
-    opacity: 0;
+  // slideIn
+  [data-animated~='slideIn'] {
+    transform: translateY(100%);
 
     &.is-animated {
       transform: translateY(0);
+    }
+  }
+
+  // fadeIn
+  [data-animated~='fadeIn'],
+  [data-animated~='fadeInUp'] {
+    opacity: 0;
+
+    &.is-animated {
       opacity: 1;
+    }
+
+    // fadeInUp
+    &[data-animated~='fadeInUp'] {
+      transform: translateY(10px);
+
+      &.is-animated {
+        transform: translateY(0);
+      }
     }
   }
 
   // blur
-  [data-animated~='blur'] {
+  [data-animated~='blurIn'],
+  [data-animated~='blurInUp'] {
     opacity: 0;
     filter: blur(10px);
 
@@ -156,24 +175,19 @@ import Skills from '../components/Skills.astro';
       opacity: 1;
       filter: blur(0);
     }
+
+    &[data-animated~='blurInUp'] {
+      transform: translateY(10px);
+
+      &.is-animated {
+        transform: translateY(0);
+      }
+    }
   }
 </style>
 
 <script>
   import { SetObserver } from '../assets/js/setObserver';
-
-  /**
-   * heroセクションを監視する関数
-   * @param entries - 監視対象要素
-   */
-  const heroObserve = (entries) => {
-    if (!entries[0].isIntersecting) {
-      document.documentElement.classList.add('is-heroOver');
-    } else {
-      document.documentElement.classList.remove('is-heroOver');
-    }
-  };
-  new SetObserver('#js-hero', heroObserve);
 
   const animationObserve = (entries) => {
     entries.forEach((entry) => {
