@@ -38,7 +38,7 @@ import Skills from '../components/Skills.astro';
 
     <!-- Contact -->
     <div class="section -contact">
-      <p class="u-text-center" lang="en">
+      <p class="u-text-center" lang="en" data-animated="blur">
         <a class="contactLink" href="mailto:sakucode1993@gmail.com">
           <span class="contactLink__text">Contact Me</span>
           <svg aria-hidden="true" class="contactLink__icon">
@@ -67,6 +67,7 @@ import Skills from '../components/Skills.astro';
   }
 
   .contactLink {
+    display: inline-flex;
     position: relative;
     align-items: flex-end;
     padding-inline: 1rem;
@@ -127,6 +128,37 @@ import Skills from '../components/Skills.astro';
   }
 </style>
 
+<style lang="scss" is:global>
+  [data-animated] {
+    --duration: 0.5s;
+    --delay: 0s;
+
+    transition: all var(--duration) var(--easing) var(--delay);
+  }
+
+  // fadeInUp
+  [data-animated~='fadeInUp'] {
+    transform: translateY(10px);
+    opacity: 0;
+
+    &.is-animated {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  // blur
+  [data-animated~='blur'] {
+    opacity: 0;
+    filter: blur(10px);
+
+    &.is-animated {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+</style>
+
 <script>
   import { SetObserver } from '../assets/js/setObserver';
 
@@ -142,4 +174,13 @@ import Skills from '../components/Skills.astro';
     }
   };
   new SetObserver('#js-hero', heroObserve);
+
+  const animationObserve = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-animated');
+      }
+    });
+  };
+  new SetObserver('[data-animated]', animationObserve, { rootMargin: '0px 0px -20% 0px', thredshold: 0.5 });
 </script>

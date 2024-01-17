@@ -6,21 +6,21 @@ import imgAbout from '../assets/img/about@2x.jpg';
 
 <div class="l-container">
   <div class="about">
-    <figure class="about__imgWrapper">
+    <figure class="about__imgWrapper" data-animated="blur">
       <Picture src={imgAbout} formats={['avif', 'webp']} alt="" />
     </figure>
     <div class="about__body">
       <section class="about__item">
-        <h3 class="about__title">経歴</h3>
-        <p class="about__text">
+        <h3 class="about__title" data-animated="blur">経歴</h3>
+        <p class="about__text" data-animated="blur" style={`--delay:.1s`}>
           2019年1月から、Web制作の勉強をスタート。始めたきっかけは、自分で作って形を残せることに、楽しそうと感じたからでした。<br
           />その後、同年12月にBtoB向けに勤怠管理システムを開発・提供する会社に入社。主にWebサイト制作、システムのデザイン・フロント画面のマークアップを担当していました。<br
           />コードを書くことでデザインを再現させていくプロセスが好きで、デザインとコードに規律性があるとなおさら喜びを感じるタイプです。
         </p>
       </section>
       <section class="about__item">
-        <h3 class="about__title">今後やりたいこと</h3>
-        <p class="about__text">
+        <h3 class="about__title" data-animated="blur">今後やりたいこと</h3>
+        <p class="about__text" data-animated="blur" style={`--delay:.1s`}>
           最近では、Astroなどのフロントエンドフレームワークを習得するべく、JavaScriptの基礎から学び直しています。また、React・Next.jsなどのフロントエンドフレームワークを使ってアプリを作ってみたいと考えています。何か身の回りで使えるアプリをぼんやりと考えています。
         </p>
       </section>
