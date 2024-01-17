@@ -67,7 +67,7 @@ const sliderData = [
         <ul class="swiper-wrapper">
           {
             sliderData.map(({ id, src, url }) => (
-              <li class="swiper-slide" data-id={id}>
+              <li class="swiper-slide" data-slide-id={id}>
                 <figure>
                   <Picture src={src} formats={['avif', 'webp']} alt="" />
                 </figure>
@@ -278,6 +278,12 @@ const sliderData = [
   import 'swiper/css/effect-fade';
   import 'swiper/css/scrollbar';
 
+  //
+  // Init Swiper
+  // --------------------
+
+  // https://swiperjs.com/swiper-api
+
   const thumbSlider = new Swiper('.works__thumbSlider', {
     allowTouchMove: false
   });
@@ -293,29 +299,30 @@ const sliderData = [
     thumbs: {
       swiper: thumbSlider,
     },
-  });
+    on: {
+      // 現在表示されているスライドに対応するコンテンツを表示
+      init: (swiper) => {
+        const activeSlideId = swiper.slides[swiper.activeIndex].dataset.slideId;
+        document.getElementById(`worksContent-${activeSlideId}`).classList.add('is-show');
+      },
+      // スライドが変わったとき、コンテンツも切り替えてアニメーションを適用
+      slideChangeTransitionStart: (swiper) => {
+        const contents = document.querySelectorAll('.js-worksContent');
+        contents.forEach((content) => {
+        content.classList.remove('is-show','is-animated');
+        content.style.setProperty('--delay', '0.2s');
+        });
 
-  /**
-   * 制作コンテンツの切り替え
-   */
 
-  /**
-   * 初期化処理
-   * -------------------- */
-  const sliderActiveId = document.querySelector('.works__mainSlider .swiper-slide-active').getAttribute('data-id');
+        const id =  swiper.slides[swiper.activeIndex].dataset.slideId;
+        const activeContent = document.getElementById(`worksContent-${id}`);
+        activeContent.classList.add('is-show');
 
-  document.getElementById(`worksContent-${sliderActiveId}`).classList.add('is-show');
-
-  mainSlider.on('slideChangeTransitionStart', function (swiper) {
-    const slides = document.querySelectorAll('.js-worksContent');
-    slides.forEach((slide) => {
-      slide.classList.remove('is-show','is-animated');
-      slide.style.setProperty('--delay', '0.2s');
-    });
-    const id = swiper.visibleSlides[0].getAttribute('data-id');
-    document.getElementById(`worksContent-${id}`).classList.add('is-show');
-    setTimeout(() => {
-      document.getElementById(`worksContent-${id}`).classList.add('is-animated');
-    }, 1000);
+        // Add event listener for transitionend
+        activeContent.addEventListener('transitionend', () => {
+          activeContent.classList.add('is-animated');
+        });
+      }
+    }
   });
 </script>
