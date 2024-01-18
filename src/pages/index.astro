@@ -140,9 +140,11 @@ import Skills from '../components/Skills.astro';
   // slideIn
   [data-animated~='slideIn'] {
     transform: translateY(100%);
+    opacity: 0;
 
     &.is-animated {
       transform: translateY(0);
+      opacity: 1;
     }
   }
 
