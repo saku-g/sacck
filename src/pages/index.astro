@@ -191,6 +191,10 @@ import Skills from '../components/Skills.astro';
 <script>
   import { SetObserver } from '../assets/js/setObserver';
 
+  /**
+   * data-animated属性がつけられた要素を監視
+   * @param entries - 監視対象要素
+   */
   const animationObserve = (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -198,5 +202,6 @@ import Skills from '../components/Skills.astro';
       }
     });
   };
+
   new SetObserver('[data-animated]', animationObserve, { rootMargin: '0px 0px -20% 0px', thredshold: 0.5 });
 </script>

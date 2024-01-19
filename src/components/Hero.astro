@@ -33,7 +33,7 @@ import { LINKS } from '../config';
       </div>
     </div>
   </div>
-  <div class="hero__completed" style={`--delay:0.8s`}>
+  <div class="hero__completed" style={`--delay:0.6s`}>
     <div class="hero__bottom" aria-hidden="true">
       <div class="hero__scroll">
         <span lang="en">Scroll Down</span>
@@ -206,5 +206,18 @@ import { LINKS } from '../config';
       entries[0].target.classList.add('is-completed');
     });
   };
-  new SetObserver('#js-hero', heroObserve);
+
+  const hasVisited = localStorage.getItem('hasVisited');
+
+  if (!hasVisited) {
+    // ローディングアニメーション終了後に処理を行う
+    document.getElementById('js-loading').addEventListener('animationend', () => {
+      const delay = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--loading-delay'));
+      setTimeout(() => {
+        new SetObserver('#js-hero', heroObserve);
+      }, delay + 100);
+    });
+  } else {
+    new SetObserver('#js-hero', heroObserve);
+  }
 </script>

@@ -7,12 +7,13 @@
   --main-color: #1c1c16;
   --text-color: var(--main-color);
   --text-color-light: #777773;
-  --easing: ease-in-out;
   --content-width: 960;
   --content-gutter-x: 5%;
   --sp-comp-width: 375;
   --pc-comp-width: 1280;
   --header-height: 52;
+  --easing: ease-in-out;
+  --loading-delay: 800;
 
   @include mq(md) {
     --header-height: 64;
