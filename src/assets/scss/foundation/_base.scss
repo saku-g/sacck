@@ -3,7 +3,7 @@
 :root {
   --font-base: "Noto Sans JP", sans-serif;
   --font-en: "Marcellus", serif;
-  --base-color: #f7f4ed;
+  --base-color: #f9f7f2;
   --main-color: #1c1c16;
   --text-color: var(--main-color);
   --text-color-light: #777773;
@@ -35,6 +35,7 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   text-rendering: optimizelegibility;
+  background-image: url("/src/assets/img/bg.png");
 }
 
 *:lang(en) {
