@@ -27,6 +27,35 @@ const sliderData = [
 
 <div class="l-container">
   <div class="works">
+    <div class="works__sliderWrapper" data-animated="fadeIn" style={`--delay:0.3s`}>
+      <div class="swiper works__mainSlider" id="main-slider">
+        <ul class="swiper-wrapper">
+          {
+            sliderData.map(({ id, src }) => (
+              <li class="swiper-slide" data-slide-id={id}>
+                <figure>
+                  <Picture src={src} formats={['avif', 'webp']} alt="" />
+                </figure>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="swiper works__thumbSlider" id="thumbnail-slider">
+        <ul class="swiper-wrapper">
+          {
+            sliderData.map(({ id,src }) => (
+              <li class="swiper-slide" data-slide-id={id}>
+                <button type="button">
+                  <Picture src={src} formats={['avif', 'webp']} alt="" />
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <!-- /.works__sliderWrapper -->
     <section class="works__body">
       {
         WORKS_CONTENTS.map(({ id, title, created, period, role, url, description, authentication }) => (
@@ -62,35 +91,6 @@ const sliderData = [
         ))
       }
     </section>
-    <div class="works__sliderWrapper" data-animated="fadeIn" style={`--delay:0.3s`}>
-      <div class="swiper works__mainSlider">
-        <ul class="swiper-wrapper">
-          {
-            sliderData.map(({ id, src, url }) => (
-              <li class="swiper-slide" data-slide-id={id}>
-                <figure>
-                  <Picture src={src} formats={['avif', 'webp']} alt="" />
-                </figure>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="swiper works__thumbSlider">
-        <ul class="swiper-wrapper">
-          {
-            sliderData.map(({ src }) => (
-              <li class="swiper-slide">
-                <figure>
-                  <Picture src={src} formats={['avif', 'webp']} alt="" />
-                </figure>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-    <!-- /.work__slider -->
   </div>
   <!-- /.works -->
 </div>
@@ -200,8 +200,6 @@ const sliderData = [
   }
 
   .works__sliderWrapper {
-    order: -1;
-
     @include mq(md) {
       grid-column: 1 / span 6;
     }
@@ -284,11 +282,16 @@ const sliderData = [
 
   // https://swiperjs.com/swiper-api
 
-  const thumbSlider = new Swiper('.works__thumbSlider', {
-    allowTouchMove: false
+  const thumbSlider = new Swiper('#thumbnail-slider', {
+    allowSlideNext: false,
+    allowTouchMove: false,
+    keyboard: {
+      enabled:true,
+      onlyInViewport: true,
+    },
   });
 
-  const mainSlider = new Swiper('.works__mainSlider', {
+  const mainSlider = new Swiper('#main-slider', {
     loop: true,
     effect: 'fade',
     fadeEffect: {
@@ -300,30 +303,43 @@ const sliderData = [
       swiper: thumbSlider,
     },
     on: {
-      // 現在表示されているスライドに対応するコンテンツを表示
+      /**
+       * 現在表示されているスライドに対応するコンテンツを表示
+       * @param swiper mainSlider
+       */
       init: (swiper) => {
         const activeSlideId = swiper.slides[swiper.activeIndex].dataset.slideId;
         document.getElementById(`worksContent-${activeSlideId}`).classList.add('is-show');
       },
-      // スライドが変わったとき、コンテンツも切り替えてアニメーションを適用
+      /**
+       * スライダーが変更したとき、対象のコンテンツに切り替える
+       * @param swiper mainSlider
+       */
       slideChangeTransitionStart: (swiper) => {
         const contents = document.querySelectorAll('.js-worksContent');
+
+        // すべてのスライダーコンテンツを非表示
         contents.forEach((content) => {
-        content.classList.remove('is-show','is-animated');
-        content.style.setProperty('--delay', '0.2s');
+          content.classList.remove('is-show','is-animated');
+          content.style.setProperty('--delay', '0.2s');
         });
 
-
+        // 対象のコンテンツを取得して表示
         const id =  swiper.slides[swiper.activeIndex].dataset.slideId;
         const activeContent = document.getElementById(`worksContent-${id}`);
         activeContent.classList.add('is-show');
-
-        // Add event listener for transitionend
-        activeContent.addEventListener('transitionend', () => {
-          activeContent.classList.add('is-animated');
-        });
       }
     }
   });
 
+  // サムネイルスライダーのキーボード操作を可能にする
+  const thumbSliderEl =  document.getElementById('thumbnail-slider');
+  thumbSliderEl.addEventListener('keydown', (e) => {
+    if (e.code === 'Enter') {
+      // focusされたbuttonの親ノードであるスライドを取得
+      const activeSlideId = document.activeElement.closest('.swiper-slide').dataset.slideId;
+      // メインスライダーをスライド
+      mainSlider.slideTo(activeSlideId - 1);
+    }
+  });
 </script>
