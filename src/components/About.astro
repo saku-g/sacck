@@ -12,7 +12,7 @@ const delay = 0.2;
       <Picture src={imgAbout} formats={['avif', 'webp']} alt="" />
     </figure>
     <div class="about__body">
-      <section class="about__item">
+      <section>
         <h3 class="about__title" data-animated="blurIn" style={`--delay:0.3s`}>経歴</h3>
         <p class="about__text" data-animated="blurIn" style={`--delay:0.4s`}>
           2019年1月から、Web制作の勉強をスタート。始めたきっかけは、自分で作って形を残せることに、楽しそうと感じたからでした。<br
@@ -20,7 +20,7 @@ const delay = 0.2;
           />コードを書くことでデザインを再現させていくプロセスが好きで、デザインとコードに規律性があるとなおさら喜びを感じるタイプです。
         </p>
       </section>
-      <section class="about__item">
+      <section class="u-mt-5 lg:u-mt-6">
         <h3 class="about__title" data-animated="blurIn" style={`--delay:0.3s`}>今後やりたいこと</h3>
         <p class="about__text" data-animated="blurIn" style={`--delay:0.4s`}>
           最近では、Astroなどのフロントエンドフレームワークを習得するべく、JavaScriptの基礎から学び直しています。また、React・Next.jsなどのフロントエンドフレームワークを使ってアプリを作ってみたいと考えています。何か身の回りで使えるアプリをぼんやりと考えています。
@@ -38,10 +38,10 @@ const delay = 0.2;
     --columns: 1;
 
     display: grid;
-    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
     grid-template-rows: auto;
-    gap: rem(24) 0;
-    margin-top: fluid(16, 64, var(--sp-comp-width), var(--pc-comp-width));
+    gap: rem(40) 0;
+    margin-top: fluid(24, 64, var(--sp-comp-width), var(--pc-comp-width));
 
     @include mq(md) {
       --columns: 12;
@@ -52,14 +52,16 @@ const delay = 0.2;
   }
 
   .about__imgWrapper {
-    height: 180px;
+    height: calc(180 / 375 * 100vw);
+    max-height: 320px;
     margin-inline: calc(var(--content-gutter-x) * -1);
     overflow: hidden;
 
     @include mq(md) {
       grid-column: 8 / span 5;
-      height: auto;
-      margin-inline: 0;
+      height: 440px;
+      max-height: none;
+      margin: auto 0;
     }
 
     img {
@@ -73,36 +75,27 @@ const delay = 0.2;
     @include mq(md) {
       grid-column: 1 / span 7;
       order: -1;
-      padding-right: calc(40 / 553 * 100%);
+      padding-right: rem(12);
     }
-  }
 
-  .about__item {
-    & + & {
-      margin-top: 2rem;
-
-      @include mq(lg) {
-        margin-top: 3rem;
-      }
+    @include mq(lg) {
+      padding-right: calc(56 / 554 * 100%);
     }
   }
 
   .about__title {
     font-size: rem(20);
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.25;
 
     @include mq(lg) {
-      font-size: rem(24);
+      font-size: rem(22);
     }
   }
 
   .about__text {
-    margin-top: rem(16);
+    margin-top: rem(12);
+    font-size: rem(14);
     line-height: 2;
-
-    @include mq(lg, $not: true) {
-      font-size: rem(14);
-    }
   }
 </style>

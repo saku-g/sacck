@@ -1,7 +1,7 @@
 @use "../global/" as *;
 
 :root {
-  --font-base: "Noto Sans JP", sans-serif;
+  --font-base: "Zen Kaku Gothic Antique", sans-serif;
   --font-en: "Marcellus", serif;
   --base-color: #fbf7ec;
   --main-color: #1c1c16;
@@ -36,6 +36,8 @@ body {
   line-height: 1.5;
   text-rendering: optimizelegibility;
   background-image: url("/src/assets/img/bg.png");
+  letter-spacing: 0.05em;
+  font-feature-settings: "palt";
 }
 
 *:lang(en) {
