@@ -134,12 +134,15 @@ import Skills from '../components/Skills.astro';
     --duration: 0.5s;
     --delay: 0s;
 
-    transition: all var(--duration) var(--easing) var(--delay);
+    transition-duration: var(--duration);
+    transition-timing-function: var(--easing);
+    transition-delay: var(--delay);
   }
 
   // slideIn
   [data-animated~='slideIn'] {
     transform: translateY(100%);
+    transition-property: transfrom, opacity;
     opacity: 0;
 
     &.is-animated {
@@ -151,6 +154,7 @@ import Skills from '../components/Skills.astro';
   // fadeIn
   [data-animated~='fadeIn'],
   [data-animated~='fadeInUp'] {
+    transition-property: opacity;
     opacity: 0;
 
     &.is-animated {
@@ -160,6 +164,7 @@ import Skills from '../components/Skills.astro';
     // fadeInUp
     &[data-animated~='fadeInUp'] {
       transform: translateY(10px);
+      transition-property: transfrom;
 
       &.is-animated {
         transform: translateY(0);
@@ -170,6 +175,7 @@ import Skills from '../components/Skills.astro';
   // blur
   [data-animated~='blurIn'],
   [data-animated~='blurInUp'] {
+    transition-property: opacity, filter;
     opacity: 0;
     filter: blur(10px);
 
