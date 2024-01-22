@@ -11,13 +11,12 @@
   --content-gutter-x: 5%;
   --sp-comp-width: 375;
   --pc-comp-width: 1280;
-  --header-height: 0;
   --easing: cubic-bezier(0.61, 1, 0.88, 1); // easeOutSine
-  --loading-delay: 800;
+  // --header-height: 0;
 
-  @include mq(md) {
-    --header-height: 0;
-  }
+  // @include mq(md) {
+  //   --header-height: 0;
+  // }
 }
 
 html {

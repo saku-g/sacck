@@ -198,7 +198,58 @@ import Skills from '../components/Skills.astro';
   import { SetObserver } from '../assets/js/setObserver';
 
   /**
-   * data-animated属性がつけられた要素を監視
+   * heroセクションを監視して<html>にクラスを付与
+   * @param entries - 監視対象要素: hero
+   */
+  const heroObserve = (entries) => {
+    const hero = entries[0].target;
+
+    if (!entries[0].isIntersecting) {
+      document.documentElement.classList.add('is-heroOver');
+    } else {
+      hero.classList.add('is-first-animated');
+      document.documentElement.classList.remove('is-heroOver');
+    }
+    hero.addEventListener('transitionend', () => {
+      hero.classList.add('is-second-animated');
+    });
+  };
+
+  /**
+   * localStorageを使用し、初回訪問時のみローディングアニメーションを行う
+   */
+  window.addEventListener('load', () => {
+    document.documentElement.classList.add('is-loaded');
+
+    const hasVisited = localStorage.getItem('hasVisited');
+    const loading = document.getElementById('js-loading');
+    const loadingImg = loading.querySelector('img');
+
+    if (!hasVisited) {
+      localStorage.setItem('hasVisited', 'true');
+      loading.classList.add('is-animated');
+
+      // ロゴアニメーション終了後に、ローディング非表示+HeroセクションにObserverを設定
+      loadingImg.addEventListener('animationend', () => {
+        loading.style.display = 'none';
+        new SetObserver('#js-hero', heroObserve);
+      });
+    } else {
+      loading.style.display = 'none';
+      new SetObserver('#js-hero', heroObserve);
+    }
+
+    // 1日経過したらローカルストレージをリセット
+    setInterval(
+      () => {
+        localStorage.removeItem('hasVisited');
+      },
+      24 * 60 * 60 * 1000,
+    );
+  });
+
+  /**
+   * data-animated属性がつけられた要素を監視してアニメーションクラスを付与
    * @param entries - 監視対象要素
    */
   const animationObserve = (entries) => {

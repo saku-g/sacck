@@ -5,14 +5,14 @@ import { LINKS } from '../config';
 <div class="hero" id="js-hero">
   <div class="hero__body">
     <h1 class="hero__title" lang="en">
-      <span class="hero__animation">Yusaku Hori</span>
+      <span class="hero__animation-1">Yusaku Hori</span>
     </h1>
     <div class="u-pl-1">
       <p class="hero__text" lang="en">
-        <span class="hero__animation" style={`--delay:0.4s`}>Born in 1993, lives in Hiroshima.</span><br />
-        <span class="hero__animation" style={`--delay:0.4s`}>I'm learning to become a web coder.</span>
+        <span class="hero__animation-1">Born in 1993, lives in Hiroshima.</span><br />
+        <span class="hero__animation-1">I'm learning to become a web coder.</span>
       </p>
-      <div class="hero__completed" style={`--delay:0.3s`}>
+      <div class="hero__animation-2" style={`--delay:0.3s`}>
         <ul class="hero__buttonWrapper">
           <li>
             <a class="hero__button" href={LINKS.github} target="_blank" rel="noopener noreferrer">
@@ -33,7 +33,7 @@ import { LINKS } from '../config';
       </div>
     </div>
   </div>
-  <div class="hero__completed" style={`--delay:0.6s`}>
+  <div class="hero__animation-2" style={`--delay:0.6s`}>
     <div class="hero__bottom" aria-hidden="true">
       <div class="hero__scroll">
         <span lang="en">Scroll Down</span>
@@ -160,28 +160,29 @@ import { LINKS } from '../config';
 
   // Animation
   // -------------------------
-  .hero__animation {
-    --delay: 0s;
 
+  // アニメーション順序
+  //  1.テキストアニメーション
+  //  2.1終了後、ボタンとスクロール要素を表示
+
+  .hero__animation-1 {
     display: inline-block;
     clip-path: inset(0 100% 0 0);
-    transition: clip-path 0.6s var(--easing) var(--delay);
+    transition: clip-path 0.6s var(--easing) 0.2s;
 
-    .is-animated & {
+    .is-first-animated & {
       clip-path: inset(0 0 0 0);
     }
   }
 
-  // Completed
-  // -------------------------
   // テキストアニメーション終了後に、ボタンとスクロールを表示
-  .hero__completed {
+  .hero__animation-2 {
     --delay: 0s;
 
     transition: opacity 0.3s var(--easing) var(--delay);
     opacity: 0;
 
-    .is-completed & {
+    .is-second-animated & {
       opacity: 1;
     }
   }
@@ -191,37 +192,3 @@ import { LINKS } from '../config';
     animation: none;
   }
 </style>
-
-<script>
-  import { SetObserver } from '../assets/js/setObserver';
-
-  /**
-   * heroセクションを監視する関数
-   * @param entries - 監視対象要素
-   */
-  const heroObserve = (entries) => {
-    if (!entries[0].isIntersecting) {
-      document.documentElement.classList.add('is-heroOver');
-    } else {
-      entries[0].target.classList.add('is-animated');
-      document.documentElement.classList.remove('is-heroOver');
-    }
-    entries[0].target.addEventListener('transitionend', () => {
-      entries[0].target.classList.add('is-completed');
-    });
-  };
-
-  const hasVisited = localStorage.getItem('hasVisited');
-
-  if (!hasVisited) {
-    // ローディングアニメーション終了後に処理を行う
-    document.getElementById('js-loading').addEventListener('animationend', () => {
-      const delay = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--loading-delay'));
-      setTimeout(() => {
-        new SetObserver('#js-hero', heroObserve);
-      }, delay + 100);
-    });
-  } else {
-    new SetObserver('#js-hero', heroObserve);
-  }
-</script>

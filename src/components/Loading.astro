@@ -17,52 +17,42 @@ import imgLogo from '../assets/img/logo.svg';
     justify-content: center;
     pointer-events: none;
 
-    &::before,
-    &::after {
+    &::before {
       content: '';
       position: absolute;
-      inset: 0;
-    }
-
-    &::before {
-      z-index: 2;
-      background-color: inherit;
-    }
-
-    &::after {
-      z-index: 1;
       background-color: #faf8f4;
+      inset: 0;
     }
 
     img {
       display: none;
-      z-index: 3;
     }
 
     // Animation
     // -------------------------
-    .is-loadingAnimated &::before,
-    .is-loadingAnimated &::after {
-      animation: bgSideOut 0.75s var(--easing) forwards;
+    // アニメーション順序
+    //  1.疑似要素の背景スライド
+    //  2.1終了後、ロゴフェードアウト
+
+    --slide-duration: 0.8s;
+
+    &.is-animated::before {
+      animation: bgsideout var(--slide-duration) var(--easing) forwards;
     }
 
-    .is-loadingAnimated &::after {
-      animation-delay: 0.7s;
-    }
-
-    @keyframes bgSideOut {
+    @keyframes bgsideout {
       100% {
         transform: translateX(105%);
       }
     }
 
-    .is-loadingAnimated & img {
+    &.is-animated img {
       display: block;
-      animation: logofadeOut 0.6s var(--easing) forwards;
-      animation-delay: calc((var(--loading-delay)) * 1ms);
+      animation: logofadeout 0.8s var(--easing) forwards;
+      animation-delay: var(--slide-duration);
     }
 
-    @keyframes logofadeOut {
+    @keyframes logofadeout {
       100% {
         transform: scale(0.75);
         opacity: 0;
@@ -70,31 +60,3 @@ import imgLogo from '../assets/img/logo.svg';
     }
   }
 </style>
-
-<script>
-  window.addEventListener('load', () => {
-    const hasVisited = localStorage.getItem('hasVisited');
-
-    document.documentElement.classList.add('is-loadingAnimated');
-    if (!hasVisited) {
-      // 初回訪問時の処理
-      localStorage.setItem('hasVisited', 'true');
-      document.documentElement.classList.add('is-loadingAnimated');
-    } else {
-      document.getElementById('js-loading').style.display = 'none';
-    }
-
-    // アニメーション終了後、ローディング画面を非表示
-    setTimeout(() => {
-      document.getElementById('js-loading').style.display = 'none';
-    }, 2000);
-
-    // 1日経過したらローカルストレージをリセット
-    setInterval(
-      () => {
-        localStorage.removeItem('hasVisited');
-      },
-      24 * 60 * 60 * 1000,
-    );
-  });
-</script>
