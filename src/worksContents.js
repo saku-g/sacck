@@ -23,7 +23,7 @@ export const WORKS_CONTENTS = [
   },
   {
     id: 3,
-    title: 'システムLPページ',
+    title: 'かえる勤怠管理LP',
     created: '2022年4月',
     period: '1ヶ月',
     role: 'デザイン・コーディング',
@@ -33,7 +33,7 @@ export const WORKS_CONTENTS = [
   },
   {
     id: 4,
-    title: 'かえる勤怠管理システム',
+    title: 'かえる勤怠管理',
     created: '2020年6月頃',
     period: '5ヶ月',
     role: 'コーディング',
@@ -74,7 +74,7 @@ export const WORKS_CONTENTS = [
   },
   {
     id: 8,
-    title: '[自主制作]無料コーディング練習所',
+    title: 'ゲームサイト（無料コーディング練習所）',
     created: '2023年11月',
     period: '3日',
     role: 'コーディング',

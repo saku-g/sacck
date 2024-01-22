@@ -88,6 +88,10 @@ import { LINKS } from '../config';
     padding: 4px;
     border-radius: 50%;
 
+    @include mq(lg) {
+      --size: 2.75rem;
+    }
+
     @include hover {
       outline: 1px dashed currentcolor;
     }

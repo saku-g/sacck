@@ -9,5 +9,5 @@ export const SITE = {
 // リンク先情報
 export const LINKS = {
   email: 'sakucode1993@gmail.com',
-  github: 'https://github.com/saku-g',
+  github: 'https://github.com/saku-g/',
 };
