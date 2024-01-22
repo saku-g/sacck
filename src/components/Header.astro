@@ -17,13 +17,14 @@ import imgLogo from '../assets/img/logo.svg';
   @use '../assets/scss/global' as *;
 
   .header {
+    display: none;
     visibility: hidden;
     position: sticky;
     z-index: 10;
     top: 0;
     transition-property: visibility, opacity;
     transition-duration: 0.3s;
-    transition-timing-function: -var(--easing);
+    transition-timing-function: var(--easing);
     opacity: 0;
   }
 

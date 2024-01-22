@@ -58,7 +58,7 @@ const sliderData = [
     <!-- /.works__sliderWrapper -->
     <section class="works__body">
       {
-        WORKS_CONTENTS.map(({ id, title, created, period, role, url, description, authentication }) => (
+        WORKS_CONTENTS.map(({ id, title, created, period, role, url, description, authentication, coding_practice }) => (
           <div
             id={`worksContent-${id}`} class="works__content js-worksContent" data-animated="blurInUp" style={`--delay: 0.4s;`}>
             <h3 class="works__title">{title}</h3>
@@ -80,12 +80,17 @@ const sliderData = [
               {authentication &&
               <dt>ログイン情報</dt>
               <dd>
-                <span class="u-block">ユーザー名: <em>admin</em></span>
-                <span class="u-block">パスワード: <em>pass</em></span>
+                <span class="u-block">ユーザー名: admin</span>
+                <span class="u-block">パスワード: pass</span>
               </dd>
               }
             </dl>
             <p class="works__text">{description}</p>
+            {coding_practice &&
+            <p class="u-mt-3 u-pl-1" style="font-size:.875rem">
+              配布元: <a class="works__link" href="https://webdesigner-go.com/coding-practice/" target="_blank" rel="noopener noreferrer">無料コーディング練習所</a>
+            </p>
+            }
           </div>
         ))
       }

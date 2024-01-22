@@ -4,19 +4,19 @@
   --font-base: "Zen Kaku Gothic Antique", sans-serif;
   --font-en: "Marcellus", serif;
   --base-color: #fbf7ec;
-  --main-color: #1c1c16;
+  --main-color: #0c0b0a;
   --text-color: var(--main-color);
   --text-color-light: #777773;
   --content-width: 960;
   --content-gutter-x: 5%;
   --sp-comp-width: 375;
   --pc-comp-width: 1280;
-  --header-height: 52;
+  --header-height: 0;
   --easing: ease-in-out;
   --loading-delay: 800;
 
   @include mq(md) {
-    --header-height: 64;
+    --header-height: 0;
   }
 }
 
