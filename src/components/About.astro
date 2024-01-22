@@ -41,12 +41,11 @@ const delay = 0.2;
     grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
     grid-template-rows: auto;
     gap: rem(40) 0;
-    margin-top: fluid(24, 64, var(--sp-comp-width), var(--pc-comp-width));
+    margin-top: fluid(16, 48, var(--sp-comp-width), var(--pc-comp-width));
 
     @include mq(md) {
       --columns: 12;
 
-      margin-top: rem(64);
       gap: 0 1rem;
     }
   }
