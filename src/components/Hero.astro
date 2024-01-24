@@ -179,10 +179,12 @@ import { LINKS } from '../config';
   .hero__animation-2 {
     --delay: 0s;
 
+    visibility: hidden;
     transition: opacity 0.3s var(--easing) var(--delay);
     opacity: 0;
 
     .is-second-animated & {
+      visibility: visible;
       opacity: 1;
     }
   }
