@@ -46,7 +46,7 @@ const sliderData = [
           {
             sliderData.map(({ id,src }) => (
               <li class="swiper-slide" data-slide-id={id}>
-                <button type="button">
+                <button type="button" aria-label={`スライド${id}の画像を表示する`}>
                   <Picture src={src} formats={['avif', 'webp']} alt="" />
                 </button>
               </li>
@@ -276,6 +276,9 @@ const sliderData = [
       enabled:true,
       onlyInViewport: true,
     },
+    a11y: {
+      slideRole: null
+    }
   });
 
   const mainSlider = new Swiper('#main-slider', {
@@ -286,6 +289,9 @@ const sliderData = [
     },
     speed: 500,
     grabCursor: true,
+    a11y: {
+      slideRole: null
+    },
     thumbs: {
       swiper: thumbSlider,
     },

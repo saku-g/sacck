@@ -7,15 +7,16 @@ import { LINKS } from '../config';
     <h1 class="hero__title" lang="en">
       <span class="hero__animation-1">Yusaku Hori</span>
     </h1>
-    <div class="u-pl-1">
+    <div class="u-pl-1 hero__animation-1" style={`--delay:0.3s`}>
       <p class="hero__text" lang="en">
-        <span class="hero__animation-1">Born in 1993, lives in Hiroshima.</span><br />
-        <span class="hero__animation-1">I'm learning to become a web coder.</span>
+        <span>Born in 1993, lives in Hiroshima.</span><br aria-hidden="true" />
+        <span>I'm learning to become a web coder.</span>
       </p>
       <div class="hero__animation-2" style={`--delay:0.3s`}>
         <ul class="hero__buttonWrapper">
           <li>
             <a class="hero__button" href={LINKS.github} target="_blank" rel="noopener noreferrer">
+              <span class="u-visuallyHidden">Github</span>
               <svg aria-hidden="true">
                 <use href="#github"></use>
               </svg>
@@ -166,9 +167,11 @@ import { LINKS } from '../config';
   //  2.1終了後、ボタンとスクロール要素を表示
 
   .hero__animation-1 {
+    --delay: 0.2s;
+
     display: inline-block;
     clip-path: inset(0 100% 0 0);
-    transition: clip-path 0.6s var(--easing) 0.2s;
+    transition: clip-path 0.6s var(--easing) var(--delay);
 
     .is-first-animated & {
       clip-path: inset(0 0 0 0);
