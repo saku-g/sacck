@@ -2,8 +2,6 @@
 // Image
 import { Picture } from 'astro:assets';
 import imgAbout from '../assets/img/about@2x.jpg';
-
-const delay = 0.2;
 ---
 
 <div class="l-container">
@@ -15,15 +13,20 @@ const delay = 0.2;
       <section>
         <h3 class="about__title" data-animated="blurIn" style={`--delay:0.3s`}>経歴</h3>
         <p class="about__text" data-animated="blurIn" style={`--delay:0.4s`}>
-          2019年1月から、Web制作の勉強をスタート。文系出身であったため、何か自分で制作物を残せることに魅力を感じたことが始めたきっかけでした。<br
-          />その後、同年12月にBtoB向けに勤怠管理システムを開発・提供する会社に入社。主にWebサイト制作やシステムのデザイン・システムフロント画面のマークアップを担当していました。<br
-          />コードを書くことでデザインを再現させていくプロセスが好きで、デザインとコードに規律性があるとなおさら喜びを感じるタイプです。
+          2019年1月からWeb制作の勉強を開始しました。自分で作って形を残せることに楽しさを感じたのがきっかけです。Progateや書籍を使って学び、少しずつWebサイトを作れるようになりました。<br
+          />同年12月には、BtoB向けに勤怠管理システムを開発・提供する企業に入社し、自社Webサイトの制作、システムのデザイン、フロント画面のマークアップを担当していました。
         </p>
       </section>
-      <section class="u-mt-5 lg:u-mt-6">
+      <section>
         <h3 class="about__title" data-animated="blurIn" style={`--delay:0.3s`}>今後やりたいこと</h3>
         <p class="about__text" data-animated="blurIn" style={`--delay:0.4s`}>
-          最近では、Astroなどのフロントエンドフレームワークを習得するべく、JavaScriptの基礎から学び直しています。また、React・Next.jsなどのフロントエンドフレームワークを使ってアプリを作ってみたいと考えています。何か身の回りで使えるアプリをぼんやりと考えています。
+          フロントエンドエンジニアとしてキャリアを築きたいと考えています。AIの登場によりWeb制作の世界は急速に変化すると予想されますが、ユーザーとの接点であるインターフェイスには関わり続けたいです。自分のアイディアや書いたコードがユーザーに影響を与えることに楽しさとやりがいを感じるからです。そのために、UI/UXや現在のトレンドであるモダンな技術（Next.js、Tailwind、JavaScriptの基礎）について学んでいます。
+        </p>
+      </section>
+      <section>
+        <h3 class="about__title" data-animated="blurIn" style={`--delay:0.3s`}>好きなこと</h3>
+        <p class="about__text" data-animated="blurIn" style={`--delay:0.4s`}>
+          コードを書くことでデザインを再現するプロセスが好きで、デザインとコードに規律性があると、なおさら喜びを感じます。また、フロントエンド開発環境を整えることも好きで、効率的で美しいコードを書くための環境を整備する感覚があり楽しさを感じます。
         </p>
       </section>
     </div>
@@ -39,57 +42,39 @@ const delay = 0.2;
 
     display: grid;
     grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
-    grid-template-rows: auto;
     gap: rem(40) 0;
-    margin-top: fluid(16, 48, var(--sp-comp-width), var(--pc-comp-width));
+    margin-top: fluid(24, 88, var(--sp-comp-width), var(--pc-comp-width));
 
     @include mq(md) {
-      --columns: 12;
+      --columns: 2;
 
-      gap: 0 1rem;
+      gap: 0 80px;
     }
   }
 
   .about__imgWrapper {
-    height: calc(180 / 375 * 100vw);
-    max-height: 320px;
-    margin-inline: calc(var(--content-gutter-x) * -1);
-    overflow: hidden;
-
-    @include mq(md) {
-      grid-column: 8 / span 5;
-      height: 440px;
-      max-height: none;
-      margin: auto 0;
-    }
-
     img {
       width: 100%;
-      height: 100%;
+      height: auto;
       object-fit: cover;
+
+      @include mq(md, $not: true) {
+        max-height: 350px;
+        object-position: 50% 8%;
+      }
     }
   }
 
   .about__body {
-    @include mq(md) {
-      grid-column: 1 / span 7;
-      order: -1;
-      padding-right: rem(12);
-    }
-
-    @include mq(lg) {
-      padding-right: calc(56 / 554 * 100%);
-    }
+    display: grid;
+    order: -1;
+    gap: rem(40) 0;
   }
 
   .about__title {
-    font-size: rem(20);
+    font-size: rem(22);
     font-weight: 500;
-    line-height: 1.25;
-
-    @include mq(lg) {
-      font-size: rem(22);
-    }
+    line-height: 1.5;
   }
 
   .about__text {

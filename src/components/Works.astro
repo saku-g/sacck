@@ -62,7 +62,7 @@ const sliderData = [
           <div
             id={`worksContent-${id}`} class="works__content js-worksContent" data-animated="blurInUp" style={`--delay: 0.4s;`}>
             <h3 class="works__title">{title}</h3>
-            <p class="u-mt-1">
+            <p class="u-mt-2">
               <a class="works__link" href={url} target="_blank" rel="noopener noreferrer">
                 <svg aria-hidden="true">
                   <use href="#link" />
@@ -104,21 +104,17 @@ const sliderData = [
   @use '../assets/scss/global' as *;
 
   .works {
+    --columns: 1;
+
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
     gap: rem(32) 0;
     margin-top: fluid(16, 48, var(--sp-comp-width), var(--pc-comp-width));
 
     @include mq(md) {
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      grid-template-rows: auto;
-      gap: 0 1rem;
-    }
-  }
+      --columns: 2;
 
-  .works__body {
-    @include mq(md) {
-      padding-left: calc(32 / 472 * 100%);
+      gap: 0 80px;
     }
   }
 
@@ -176,7 +172,7 @@ const sliderData = [
     gap: rem(10) calc(32 / 440 * 100%);
 
     @include mq(lg) {
-      padding: 1rem rem(24);
+      padding: rem(20) rem(32);
     }
 
     dt {
@@ -191,13 +187,13 @@ const sliderData = [
 
   .works__text {
     margin-top: 1rem;
+    padding-inline-end: rem(4);
     font-size: rem(14);
     line-height: 2;
     white-space: pre-wrap; // \nの改行を有効化
 
     @include mq(lg) {
       margin-top: 1.5rem;
-      padding-inline: rem(8);
     }
   }
 
@@ -207,34 +203,34 @@ const sliderData = [
     height: 100%;
   }
 
+  // メインスライダー
   .works__mainSlider {
-    .swiper-slide img {
-      border: 2px solid transparent;
+    .swiper-slide {
+      padding: .5rem;
     }
 
-    .swiper-slide-active img {
-      border-color: var(--main-color);
+    .swiper-slide.swiper-slide-active img {
+      box-shadow: 2px 4px 8px rgb(0 0 0 / 8%);
     }
   }
 
   // サムネイルスライダー
   .works__thumbSlider {
-    margin-top: rem(8);
+    margin-top: 1rem;
 
     .swiper-wrapper {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
 
       @include mq(md) {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
     .swiper-slide {
       width: auto !important; // style属性のwidthを打ち消し
-      transition: transform .2s linear;
-      border: 1px solid rgb(0 0 0 / 10%);
+      transition: scale .2s linear;
       cursor: pointer;
 
       // 非アクティブのサムネイル
@@ -249,8 +245,7 @@ const sliderData = [
 
       // アクティブのサムネイル
       &.swiper-slide-thumb-active {
-        transform: scale(.95);
-        border-color: var(--main-color);
+        scale: .92;
       }
     }
   }

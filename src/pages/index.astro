@@ -18,16 +18,16 @@ import Skills from '../components/Skills.astro';
     <!-- Hero -->
     <Hero />
 
+    <!-- Works -->
+    <section class="section">
+      <SectionTitle text="Works" />
+      <Works />
+    </section>
+
     <!-- About -->
     <section class="section -about">
       <SectionTitle text="About" />
       <About />
-    </section>
-
-    <!-- Works -->
-    <section class="section">
-      <SectionTitle text="Works" className="-reverse" />
-      <Works />
     </section>
 
     <!-- Skills -->
@@ -201,7 +201,7 @@ import Skills from '../components/Skills.astro';
    * heroセクションを監視して<html>にクラスを付与
    * @param entries - 監視対象要素: hero
    */
-  const heroObserve = (entries) => {
+  const heroObserve = entries => {
     const hero = entries[0].target;
 
     if (!entries[0].isIntersecting) {
@@ -244,7 +244,7 @@ import Skills from '../components/Skills.astro';
       () => {
         localStorage.removeItem('hasVisited');
       },
-      24 * 60 * 60 * 1000,
+      24 * 60 * 60 * 1000
     );
   });
 
@@ -252,8 +252,8 @@ import Skills from '../components/Skills.astro';
    * data-animated属性がつけられた要素を監視してアニメーションクラスを付与
    * @param entries - 監視対象要素
    */
-  const animationObserve = (entries) => {
-    entries.forEach((entry) => {
+  const animationObserve = entries => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-animated');
       }

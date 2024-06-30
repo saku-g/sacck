@@ -7,7 +7,7 @@
   --main-color: #0c0b0a;
   --text-color: var(--main-color);
   --text-color-light: #777773;
-  --content-width: 960;
+  --content-width: 1040;
   --content-gutter-x: 5%;
   --sp-comp-width: 375;
   --pc-comp-width: 1280;
@@ -31,6 +31,7 @@ body {
   background-color: var(--base-color);
   color: var(--text-color);
   font-family: var(--font-base);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   text-rendering: optimizelegibility;
