@@ -43,12 +43,12 @@ import imgAbout from '../assets/img/about@2x.jpg';
     display: grid;
     grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
     gap: rem(40) 0;
-    margin-top: fluid(24, 88, var(--sp-comp-width), var(--pc-comp-width));
+    margin-top: fluid(40, 88, var(--sp-comp-width), var(--pc-comp-width));
 
     @include mq(md) {
       --columns: 2;
 
-      gap: 0 80px;
+      gap: 0 calc(80 / var(--content-width) * 100%);
     }
   }
 
@@ -57,10 +57,14 @@ import imgAbout from '../assets/img/about@2x.jpg';
       width: 100%;
       height: auto;
       object-fit: cover;
+      max-height: 350px;
+      object-position: 50% 8%;
 
-      @include mq(md, $not: true) {
-        max-height: 350px;
-        object-position: 50% 8%;
+      @include mq(md) {
+        position: sticky;
+        top: 20px;
+        max-height: none;
+        object-position: 50% 50%;
       }
     }
   }
